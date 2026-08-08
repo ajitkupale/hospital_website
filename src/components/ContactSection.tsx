@@ -1,5 +1,5 @@
 /* ===== CONTACT & APPOINTMENT SECTION — PREMIUM (REBUILT) ===== */
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -31,6 +31,8 @@ const DEPARTMENTS = [
   'Other',
 ];
 
+const MESSAGE_MAX_LENGTH = 500;
+
 const LOCATIONS = [
   {
     name: 'Main Hospital — Rankala, Kolhapur',
@@ -48,31 +50,166 @@ const LOCATIONS = [
   },
 ];
 
+/* ── Validation helpers ─────────────────────────── */
+const PHONE_REGEX = /^[6-9]\d{9}$/;
+const NAME_REGEX = /^[A-Za-z\s.'-]{2,100}$/;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+interface FormErrors {
+  name?: string;
+  phone?: string;
+  department?: string;
+  date?: string;
+  email?: string;
+  message?: string;
+}
+
+function validateField(name: string, value: string): string | undefined {
+  switch (name) {
+    case 'name': {
+      if (!value.trim()) return 'Full name is required.';
+      if (value.trim().length < 2) return 'Name must be at least 2 characters.';
+      if (!NAME_REGEX.test(value.trim())) return 'Name can only contain letters, spaces, dots, and hyphens.';
+      return undefined;
+    }
+    case 'phone': {
+      const digits = value.replace(/\D/g, '');
+      if (!digits) return 'Phone number is required.';
+      if (digits.length !== 10) return 'Phone number must be exactly 10 digits.';
+      if (!/^[6-9]/.test(digits)) return 'Phone number must start with 6, 7, 8, or 9.';
+      return undefined;
+    }
+    case 'department': {
+      if (!value) return 'Please select a department.';
+      return undefined;
+    }
+    case 'date': {
+      if (!value) return undefined; // Date is optional
+      const selected = new Date(value);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      if (selected < today) return 'Date cannot be in the past.';
+      const maxDate = new Date();
+      maxDate.setDate(maxDate.getDate() + 90);
+      if (selected > maxDate) return 'Date cannot be more than 90 days from today.';
+      return undefined;
+    }
+    case 'email': {
+      if (!value) return undefined; // Email is optional
+      if (!EMAIL_REGEX.test(value)) return 'Please enter a valid email address.';
+      return undefined;
+    }
+    case 'message': {
+      if (value.length > MESSAGE_MAX_LENGTH) return `Message cannot exceed ${MESSAGE_MAX_LENGTH} characters.`;
+      return undefined;
+    }
+    default:
+      return undefined;
+  }
+}
+
+function getDateConstraints() {
+  const today = new Date();
+  const min = today.toISOString().split('T')[0];
+  const max = new Date(today.getTime() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+  return { min, max };
+}
+
 export default function ContactSection() {
-  const [form, setForm] = useState({ name: '', phone: '', department: '', date: '', message: '' });
+  const [form, setForm] = useState({ name: '', phone: '', department: '', date: '', email: '', message: '' });
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [serverError, setServerError] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const dateConstraints = getDateConstraints();
+
+  /* Format phone as "XXXXX XXXXX" for display */
+  const formatPhone = (raw: string): string => {
+    const digits = raw.replace(/\D/g, '').slice(0, 10);
+    if (digits.length > 5) return `${digits.slice(0, 5)} ${digits.slice(5)}`;
+    return digits;
   };
+
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    let newValue = value;
+
+    // Auto-format phone input
+    if (name === 'phone') {
+      newValue = formatPhone(value);
+    }
+
+    // Limit message length
+    if (name === 'message' && value.length > MESSAGE_MAX_LENGTH) {
+      return;
+    }
+
+    setForm((prev) => ({ ...prev, [name]: newValue }));
+
+    // Validate on change if field was already touched
+    if (touched[name]) {
+      const fieldValue = name === 'phone' ? newValue.replace(/\D/g, '') : newValue;
+      const err = validateField(name, fieldValue);
+      setErrors((prev) => ({ ...prev, [name]: err }));
+    }
+  }, [touched]);
+
+  const handleBlur = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setTouched((prev) => ({ ...prev, [name]: true }));
+    const fieldValue = name === 'phone' ? value.replace(/\D/g, '') : value;
+    const err = validateField(name, fieldValue);
+    setErrors((prev) => ({ ...prev, [name]: err }));
+  }, []);
+
+  /* Validate entire form and return true if valid */
+  const validateAll = (): boolean => {
+    const newErrors: FormErrors = {};
+    const phoneDigits = form.phone.replace(/\D/g, '');
+    newErrors.name = validateField('name', form.name);
+    newErrors.phone = validateField('phone', phoneDigits);
+    newErrors.department = validateField('department', form.department);
+    newErrors.date = validateField('date', form.date);
+    newErrors.email = validateField('email', form.email);
+    newErrors.message = validateField('message', form.message);
+
+    setErrors(newErrors);
+    setTouched({ name: true, phone: true, department: true, date: true, email: true, message: true });
+    return !Object.values(newErrors).some(Boolean);
+  };
+
+  /* Check if form is ready for submission */
+  const isFormValid = !errors.name && !errors.phone && !errors.department && !errors.date && !errors.email && !errors.message
+    && form.name.trim().length >= 2
+    && form.phone.replace(/\D/g, '').length === 10
+    && form.department !== '';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
+    if (!validateAll()) return;
 
-    const result = await submitAppointment(form);
+    setLoading(true);
+    setServerError(null);
+
+    const payload = {
+      ...form,
+      phone: form.phone.replace(/\D/g, ''), // Send raw 10-digit number
+    };
+    const result = await submitAppointment(payload);
 
     setLoading(false);
     if (result.success) {
       setSubmitted(true);
-      setForm({ name: '', phone: '', department: '', date: '', message: '' });
+      setForm({ name: '', phone: '', department: '', date: '', email: '', message: '' });
+      setTouched({});
+      setErrors({});
     } else {
-      setError(result.message);
+      setServerError(result.message);
     }
   };
+
 
   return (
     <Box
@@ -214,7 +351,10 @@ export default function ContactSection() {
                           name="name"
                           value={form.name}
                           onChange={handleChange}
+                          onBlur={handleBlur}
                           placeholder="e.g. Ramesh Patil"
+                          error={touched.name && !!errors.name}
+                          helperText={touched.name && errors.name}
                         />
                       </Grid>
                       <Grid size={{ xs: 12, sm: 6 }}>
@@ -225,8 +365,12 @@ export default function ContactSection() {
                           name="phone"
                           value={form.phone}
                           onChange={handleChange}
-                          placeholder="+91 XXXXX XXXXX"
+                          onBlur={handleBlur}
+                          placeholder="98765 43210"
                           type="tel"
+                          error={touched.phone && !!errors.phone}
+                          helperText={touched.phone && errors.phone ? errors.phone : 'Indian mobile: 10 digits starting with 6/7/8/9'}
+                          slotProps={{ htmlInput: { maxLength: 11, inputMode: 'numeric' } }}
                         />
                       </Grid>
                       <Grid size={{ xs: 12, sm: 6 }}>
@@ -238,6 +382,9 @@ export default function ContactSection() {
                           name="department"
                           value={form.department}
                           onChange={handleChange}
+                          onBlur={handleBlur}
+                          error={touched.department && !!errors.department}
+                          helperText={touched.department && errors.department}
                         >
                           {DEPARTMENTS.map((d) => (
                             <MenuItem key={d} value={d}>{d}</MenuItem>
@@ -251,8 +398,28 @@ export default function ContactSection() {
                           name="date"
                           value={form.date}
                           onChange={handleChange}
+                          onBlur={handleBlur}
                           type="date"
-                          slotProps={{ inputLabel: { shrink: true } }}
+                          slotProps={{
+                            inputLabel: { shrink: true },
+                            htmlInput: { min: dateConstraints.min, max: dateConstraints.max },
+                          }}
+                          error={touched.date && !!errors.date}
+                          helperText={touched.date && errors.date}
+                        />
+                      </Grid>
+                      <Grid size={{ xs: 12 }}>
+                        <TextField
+                          fullWidth
+                          label="Email Address (optional)"
+                          name="email"
+                          value={form.email}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          placeholder="e.g. ramesh@example.com"
+                          type="email"
+                          error={touched.email && !!errors.email}
+                          helperText={touched.email && errors.email ? errors.email : 'We\'ll send appointment confirmation here'}
                         />
                       </Grid>
                       <Grid size={12}>
@@ -262,15 +429,23 @@ export default function ContactSection() {
                           name="message"
                           value={form.message}
                           onChange={handleChange}
+                          onBlur={handleBlur}
                           multiline
                           rows={3}
                           placeholder="Briefly describe your symptoms or any relevant medical history..."
+                          error={touched.message && !!errors.message}
+                          helperText={
+                            touched.message && errors.message
+                              ? errors.message
+                              : `${form.message.length}/${MESSAGE_MAX_LENGTH} characters`
+                          }
+                          slotProps={{ htmlInput: { maxLength: MESSAGE_MAX_LENGTH } }}
                         />
                       </Grid>
                       <Grid size={12}>
-                        {error && (
-                          <Alert severity="error" sx={{ mb: 2 }} onClose={() => setError(null)}>
-                            {error}
+                        {serverError && (
+                          <Alert severity="error" sx={{ mb: 2 }} onClose={() => setServerError(null)}>
+                            {serverError}
                           </Alert>
                         )}
                         <Button
@@ -278,7 +453,7 @@ export default function ContactSection() {
                           variant="contained"
                           fullWidth
                           size="large"
-                          disabled={loading}
+                          disabled={loading || !isFormValid}
                           endIcon={loading ? <CircularProgress size={20} color="inherit" /> : <SendIcon />}
                           sx={{
                             py: 2,
@@ -291,6 +466,10 @@ export default function ContactSection() {
                               background: `linear-gradient(135deg, ${COLORS.navyLight} 0%, ${COLORS.navy} 100%)`,
                               boxShadow: SHADOW.lg,
                               transform: 'translateY(-2px)',
+                            },
+                            '&.Mui-disabled': {
+                              background: 'rgba(11,61,92,0.3)',
+                              color: 'rgba(255,255,255,0.5)',
                             },
                           }}
                         >

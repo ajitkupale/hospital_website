@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS appointments (
   id          INT AUTO_INCREMENT PRIMARY KEY,
   name        VARCHAR(100)  NOT NULL,
   phone       VARCHAR(20)   NOT NULL,
+  email       VARCHAR(150)  DEFAULT NULL,
   department  VARCHAR(100)  NOT NULL,
   preferred_date DATE       DEFAULT NULL,
   message     TEXT          DEFAULT NULL,

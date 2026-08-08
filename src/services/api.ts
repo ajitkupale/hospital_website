@@ -10,6 +10,7 @@ export interface AppointmentPayload {
   phone: string;
   department: string;
   date: string;
+  email?: string;
   message: string;
 }
 

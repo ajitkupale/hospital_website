@@ -11,6 +11,7 @@ SELECT
   id,
   name,
   phone,
+  email,
   department,
   preferred_date,
   message,

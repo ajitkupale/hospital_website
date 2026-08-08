@@ -22,6 +22,7 @@ async function setup() {
       id          INT AUTO_INCREMENT PRIMARY KEY,
       name        VARCHAR(100)  NOT NULL,
       phone       VARCHAR(20)   NOT NULL,
+      email       VARCHAR(150)  DEFAULT NULL,
       department  VARCHAR(100)  NOT NULL,
       preferred_date DATE       DEFAULT NULL,
       message     TEXT          DEFAULT NULL,
@@ -34,6 +35,14 @@ async function setup() {
     ) ENGINE=InnoDB
   `);
   console.log('✅ appointments table created');
+
+  // Migration: add email column if it doesn't exist (for existing tables)
+  try {
+    await connection.execute(`ALTER TABLE appointments ADD COLUMN email VARCHAR(150) DEFAULT NULL AFTER phone`);
+    console.log('✅ email column added to appointments');
+  } catch {
+    // Column already exists — ignore
+  }
 
   await connection.execute(`
     CREATE TABLE IF NOT EXISTS contacts (
