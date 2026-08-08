@@ -11,10 +11,14 @@ const pool = mysql.createPool({
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || 'sunshine_hospital',
   waitForConnections: true,
-  connectionLimit: 10,
+  connectionLimit: 5,
   queueLimit: 0,
   // Timezone alignment
   timezone: '+05:30',
+  // SSL for cloud providers (Aiven, TiDB, etc.)
+  ...(process.env.DB_HOST && process.env.DB_HOST !== 'localhost'
+    ? { ssl: { rejectUnauthorized: false } }
+    : {}),
 });
 
 export default pool;
