@@ -10,7 +10,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import StarIcon from '@mui/icons-material/Star';
 import AccessibleIcon from '@mui/icons-material/Accessible';
 import VerifiedIcon from '@mui/icons-material/Verified';
-import { COLORS, RADIUS, SHADOW } from '../theme';
+import { COLORS, RADIUS } from '../theme';
 import { useParallax } from '../hooks/useParallax';
 
 export default function HeroSection() {

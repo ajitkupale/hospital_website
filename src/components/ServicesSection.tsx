@@ -18,7 +18,7 @@ import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import { useScrollReveal } from '../hooks/useScrollReveal';
-import { COLORS, RADIUS, SHADOW, TRANSITION_MEDIUM } from '../theme';
+import { COLORS, RADIUS, SHADOW } from '../theme';
 
 const HOSPITAL_SERVICES = [
   {

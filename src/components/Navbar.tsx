@@ -17,7 +17,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import PhoneIcon from '@mui/icons-material/Phone';
 import Chip from '@mui/material/Chip';
-import { COLORS, RADIUS, SHADOW, TRANSITION_MEDIUM } from '../theme';
+import { COLORS, RADIUS, TRANSITION_MEDIUM } from '../theme';
 
 const NAV_LINKS = [
   { label: 'Home', href: '#home' },
