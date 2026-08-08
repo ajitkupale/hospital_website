@@ -1,7 +1,7 @@
 -- ===== VIEW ALL DATA — SUNSHINE MULTI-SPECIALITY CENTER =====
--- Usage: mysql -u root -p < server/view_data.sql
+-- Usage: mysql -h HOST -P PORT -u USER -p < server/view_data.sql
 
-USE sunshine_hospital;
+USE defaultdb;
 
 -- ─────────────────────────────────────────────
 -- 1. ALL APPOINTMENTS

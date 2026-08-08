@@ -1,12 +1,8 @@
 -- ===== SUNSHINE MULTI-SPECIALITY CENTER — DATABASE SCHEMA =====
--- Run this script to create the database and all tables.
--- Usage: mysql -u root -p < server/schema.sql
+-- Run this script to create all tables in the Aiven cloud database.
+-- The app connects to 'defaultdb' as configured in .env (DB_NAME).
 
-CREATE DATABASE IF NOT EXISTS sunshine_hospital
-  CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;
-
-USE sunshine_hospital;
+USE defaultdb;
 
 -- ─────────────────────────────────────────────
 -- APPOINTMENTS — Booking requests from patients
