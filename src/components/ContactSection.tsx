@@ -74,9 +74,9 @@ function validateField(name: string, value: string): string | undefined {
     }
     case 'phone': {
       const digits = value.replace(/\D/g, '');
-      if (!digits) return 'Phone number is required.';
-      if (digits.length !== 10) return 'Phone number must be exactly 10 digits.';
-      if (!/^[6-9]/.test(digits)) return 'Phone number must start with 6, 7, 8, or 9.';
+      if (!digits) return 'Please enter 10 digit mobile number.';
+      if (digits.length !== 10) return 'Please enter 10 digit mobile number.';
+      if (!/^[6-9]/.test(digits)) return 'Mobile number must start with 6, 7, 8, or 9.';
       return undefined;
     }
     case 'department': {
