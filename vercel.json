@@ -22,7 +22,11 @@
       "handle": "filesystem"
     },
     {
-      "src": "/(.*)",
+      "src": "/privacy-policy",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/((?!api/).*)",
       "dest": "/index.html"
     }
   ]
