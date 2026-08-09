@@ -1,4 +1,5 @@
 /* ===== PREMIUM FOOTER (REBUILT) ===== */
+import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -356,9 +357,28 @@ export default function Footer() {
             <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.75rem' }}>
               © {new Date().getFullYear()} Sunshine Multi-Speciality Center. All rights reserved.
             </Typography>
-            <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.75rem' }}>
-              Dr. Onkar Kakare — MBBS, MD (Internal Medicine) · Diabetologist
-            </Typography>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <Typography
+                component={Link}
+                to="/privacy-policy"
+                variant="caption"
+                sx={{
+                  color: 'rgba(255,255,255,0.35)',
+                  fontSize: '0.75rem',
+                  textDecoration: 'none',
+                  transition: TRANSITION_MEDIUM,
+                  '&:hover': {
+                    color: COLORS.tealLight,
+                  },
+                }}
+              >
+                Privacy Policy
+              </Typography>
+              <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.15)' }}>|</Typography>
+              <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.75rem' }}>
+                Dr. Onkar Kakare — MBBS, MD (Internal Medicine) · Diabetologist
+              </Typography>
+            </Stack>
           </Stack>
         </Container>
 

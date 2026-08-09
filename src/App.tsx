@@ -1,35 +1,30 @@
 /* ===== ROOT APP ===== */
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
 import Navbar from './components/Navbar';
-import HeroSection from './components/HeroSection';
-import QuickStatsBar from './components/QuickStatsBar';
-import AboutSection from './components/AboutSection';
-import ServicesSection from './components/ServicesSection';
-import TestimonialsSection from './components/TestimonialsSection';
-import PatientResourcesSection from './components/PatientResourcesSection';
-import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import WhatsAppFab from './components/WhatsAppFab';
+import HomePage from './pages/HomePage';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Navbar />
-      <main>
-        <HeroSection />
-        <QuickStatsBar />
-        <AboutSection />
-        <ServicesSection />
-        <TestimonialsSection />
-        <PatientResourcesSection />
-        <ContactSection />
-      </main>
-      <Footer />
-      <WhatsAppFab />
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          </Routes>
+        </main>
+        <Footer />
+        <WhatsAppFab />
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
