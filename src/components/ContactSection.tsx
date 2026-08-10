@@ -51,7 +51,7 @@ const LOCATIONS = [
 ];
 
 /* ── Validation helpers ─────────────────────────── */
-const PHONE_REGEX = /^[6-9]\d{9}$/;
+/* PHONE validation is done inline in validateField() */
 const NAME_REGEX = /^[A-Za-z\s.'-]{2,100}$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
