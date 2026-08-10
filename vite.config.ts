@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     rolldownOptions: {
       output: {
-        advancedChunks: {
+        codeSplitting: {
           groups: [
             {
               name: 'vendor-react',
@@ -30,4 +30,5 @@ export default defineConfig({
     },
   },
 })
+
 
