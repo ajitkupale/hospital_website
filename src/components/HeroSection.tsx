@@ -24,6 +24,8 @@ export default function HeroSection() {
   return (
     <Box
       id="home"
+      component="section"
+      aria-labelledby="hero-heading"
       sx={{
         position: 'relative',
         minHeight: { xs: '100svh', md: '100vh' },
@@ -36,7 +38,7 @@ export default function HeroSection() {
       <Box
         component="img"
         src="/hospital-hero.webp"
-        alt="Sunshine Multi-speciality Center exterior"
+        alt="hospital-exterior-sunshine-multispeciality-center-rankala-kolhapur"
         loading="eager"
         fetchPriority="high"
         sx={{
@@ -147,8 +149,9 @@ export default function HeroSection() {
             ))}
           </Stack>
 
-          {/* Main heading with gradient text */}
+          {/* Main heading with gradient text — SEO H1: primary keyword */}
           <Typography
+            id="hero-heading"
             variant="h2"
             component="h1"
             sx={{
@@ -161,7 +164,7 @@ export default function HeroSection() {
               textShadow: '0 2px 16px rgba(0,0,0,0.25)',
             }}
           >
-            Your Health,{' '}
+            24/7 Multi-Speciality{' '}
             <Box
               component="span"
               sx={{
@@ -172,7 +175,7 @@ export default function HeroSection() {
                 filter: `drop-shadow(0 0 16px rgba(8,145,178,0.25))`,
               }}
             >
-              Our Priority
+              Hospital in Kolhapur
             </Box>
           </Typography>
 
@@ -213,7 +216,7 @@ export default function HeroSection() {
               size="large"
               startIcon={<PhoneIcon />}
               component="a"
-              href="tel:+91XXXXXXXXXX"
+              href="tel:+917276009466"
               sx={{
                 py: 2,
                 px: 4,

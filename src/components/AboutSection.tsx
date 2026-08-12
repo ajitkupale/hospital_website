@@ -45,6 +45,8 @@ export default function AboutSection() {
   return (
     <Box
       id="about"
+      component="section"
+      aria-label="About Sunshine Multi-Speciality Center"
       sx={{
         py: { xs: 8, md: 12 },
         bgcolor: 'background.default',
@@ -205,7 +207,7 @@ export default function AboutSection() {
                 <Box
                   component="img"
                   src="/hospital-hero.webp"
-                  alt="Sunshine Multi-Speciality Center"
+                  alt="sunshine-multispeciality-center-hospital-building-rankala-kolhapur"
                   loading="lazy"
                   sx={{ width: '100%', display: 'block', aspectRatio: '4/3', objectFit: 'cover' }}
                 />
@@ -233,8 +235,8 @@ export default function AboutSection() {
 
         <Divider sx={{ mb: 12, borderColor: 'rgba(8,145,178,0.1)' }} />
 
-        {/* Doctor profile */}
-        <Box sx={{ mb: 10 }}>
+        {/* Doctor profile — anchor targeted by sitemap and internal links */}
+        <Box sx={{ mb: 10 }} id="dr-onkar-kakare">
           <Box sx={{ textAlign: 'center', mb: 8 }}>
             <Chip
               label="Our Doctor"
@@ -286,7 +288,7 @@ export default function AboutSection() {
                   <Box
                     component="img"
                     src="/doctor-kakare.webp"
-                    alt="Dr. Onkar Kakare"
+                    alt="dr-onkar-kakare-diabetologist-internal-medicine-specialist-kolhapur"
                     loading="lazy"
                     sx={{ width: '100%', display: 'block', aspectRatio: '3/4', objectFit: 'cover' }}
                   />

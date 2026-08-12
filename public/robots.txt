@@ -1,0 +1,22 @@
+# Sunshine Multi-Speciality Center — robots.txt
+# https://sunshine-beige-five.vercel.app/
+
+User-agent: *
+Allow: /
+
+# Disallow backend / API routes
+Disallow: /api/
+
+# Disallow environment / config files
+Disallow: /.env
+Disallow: /.env.*
+
+# Disallow Vercel internal paths
+Disallow: /_next/
+Disallow: /vercel/
+
+# Sitemap location
+Sitemap: https://sunshine-beige-five.vercel.app/sitemap.xml
+
+# Crawl delay for courtesy (optional, not honoured by Google)
+Crawl-delay: 5

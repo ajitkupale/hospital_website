@@ -153,6 +153,9 @@ export default function TestimonialsSection() {
                 transform: visible ? 'none' : 'translateY(24px)',
                 transition: `all 0.7s cubic-bezier(0.4,0,0.2,1) ${i * 0.1}s`,
               }}
+              itemScope
+              itemType="https://schema.org/Review"
+              itemProp="review"
             >
               <Card
                 sx={{
@@ -199,6 +202,7 @@ export default function TestimonialsSection() {
                   />
                   <Typography
                     variant="body2"
+                    itemProp="reviewBody"
                     sx={{
                       color: 'rgba(255,255,255,0.82)',
                       lineHeight: 1.85,
@@ -224,14 +228,24 @@ export default function TestimonialsSection() {
                       {t.initials}
                     </Avatar>
                     <Box sx={{ flex: 1 }}>
-                      <Typography variant="body2" sx={{ color: 'white', fontWeight: 700, fontSize: '0.875rem' }}>
-                        {t.name}
+                      <Typography
+                        variant="body2"
+                        itemProp="author"
+                        itemScope
+                        itemType="https://schema.org/Person"
+                        sx={{ color: 'white', fontWeight: 700, fontSize: '0.875rem' }}
+                      >
+                        <span itemProp="name">{t.name}</span>
                       </Typography>
                       <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.72rem' }}>
                         {t.location}
                       </Typography>
                     </Box>
-                    <Rating value={t.rating} size="small" readOnly />
+                    <Box itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
+                      <meta itemProp="ratingValue" content={String(t.rating)} />
+                      <meta itemProp="bestRating" content="5" />
+                      <Rating value={t.rating} size="small" readOnly />
+                    </Box>
                   </Stack>
                 </CardContent>
               </Card>

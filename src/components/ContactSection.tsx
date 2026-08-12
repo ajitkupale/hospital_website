@@ -35,16 +35,18 @@ const MESSAGE_MAX_LENGTH = 500;
 
 const LOCATIONS = [
   {
-    name: 'Main Hospital — Rankala, Kolhapur',
-    address: 'Opposite Dr. Yedekar Hospital, near Nagojirao Patankar Highschool, Rankala, Kolhapur, Maharashtra',
-    phone: '+91 XXXXX XXXXX',
+    name: 'Sunshine Multi-Speciality Center — Rankala, Kolhapur',
+    label: 'Hospital',
+    address: 'Opposite Dr. Yedekar Hospital, near Nagojirao Patankar Highschool, Rankala, Kolhapur, Maharashtra — 416012',
+    phone: '+91 72760 09466',
     hours: '24/7 — Emergency always open',
     mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30655.65765838489!2d74.2079866!3d16.703591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc1000309e8a9f7%3A0x5b5f4af84e2de4cb!2sRankala%20Lake%2C%20Kolhapur%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1704000000000!5m2!1sen!2sin',
   },
   {
-    name: 'Clinic — Laxmipuri, Kolhapur',
+    name: 'Dr. Onkar Kakare Clinic — Laxmipuri, Kolhapur',
+    label: 'OPD Consultation Clinic',
     address: 'Laxmipuri, Kolhapur, Maharashtra',
-    phone: '+91 XXXXX XXXXX',
+    phone: '+91 72760 09466',
     hours: 'Mon–Sat: 9 AM – 2 PM & 5 PM – 9 PM',
     mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30655.65765838489!2d74.2179866!3d16.713591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc1007fe9ede065%3A0x4e20def4dbd04fda!2sLaxmipuri%2C%20Kolhapur%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1704000000000!5m2!1sen!2sin',
   },
@@ -214,6 +216,8 @@ export default function ContactSection() {
   return (
     <Box
       id="contact"
+      component="section"
+      aria-label="Book Appointment and Contact Sunshine Multi-Speciality Center"
       sx={{
         py: { xs: 8, md: 12 },
         bgcolor: 'background.paper',
@@ -516,7 +520,7 @@ export default function ContactSection() {
                       variant="contained"
                       startIcon={<PhoneIcon />}
                       component="a"
-                      href="tel:+91XXXXXXXXXX"
+                      href="tel:+917276009466"
                       sx={{
                         py: 2,
                         fontWeight: 700,
@@ -536,7 +540,7 @@ export default function ContactSection() {
                       variant="contained"
                       startIcon={<WhatsAppIcon />}
                       component="a"
-                      href="https://wa.me/91XXXXXXXXXX"
+                      href="https://wa.me/917276009466"
                       target="_blank"
                       rel="noopener noreferrer"
                       sx={{
@@ -560,6 +564,10 @@ export default function ContactSection() {
               {LOCATIONS.map((loc) => (
                 <Card
                   key={loc.name}
+                  itemScope
+                  itemType={loc.label === 'Hospital'
+                    ? 'https://schema.org/Hospital'
+                    : 'https://schema.org/MedicalClinic'}
                   sx={{
                     border: '1px solid rgba(226,232,240,0.6)',
                     '&:hover': {
@@ -569,7 +577,7 @@ export default function ContactSection() {
                   }}
                 >
                   <CardContent sx={{ p: 4 }}>
-                    <Stack direction="row" spacing={2} alignItems="flex-start" sx={{ mb: 3 }}>
+                    <Stack direction="row" spacing={2} alignItems="flex-start" sx={{ mb: 1 }}>
                       <Box
                         sx={{
                           p: 1,
@@ -582,8 +590,29 @@ export default function ContactSection() {
                         <LocationOnIcon sx={{ fontSize: 22 }} />
                       </Box>
                       <Box>
-                        <Typography variant="subtitle1" fontWeight={700}>{loc.name}</Typography>
-                        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5, lineHeight: 1.6 }}>
+                        <Typography variant="subtitle1" fontWeight={700} itemProp="name">{loc.name}</Typography>
+                        {/* Explicit type badge: Hospital vs OPD Clinic */}
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            display: 'inline-block',
+                            mt: 0.5,
+                            mb: 0.5,
+                            px: 1,
+                            py: 0.25,
+                            borderRadius: `${RADIUS.sm}px`,
+                            bgcolor: loc.label === 'Hospital'
+                              ? 'rgba(220,38,38,0.08)'
+                              : 'rgba(8,145,178,0.08)',
+                            color: loc.label === 'Hospital' ? COLORS.red : COLORS.teal,
+                            fontWeight: 700,
+                            fontSize: '0.68rem',
+                            letterSpacing: '0.05em',
+                          }}
+                        >
+                          {loc.label}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5, lineHeight: 1.6 }} itemProp="address">
                           {loc.address}
                         </Typography>
                       </Box>

@@ -26,6 +26,7 @@ const BLOG_POSTS = [
     title: 'Understanding Type 2 Diabetes: Signs, Risks & Prevention',
     date: 'June 12, 2025',
     category: 'Diabetes',
+    href: '#diabetes-management',
     excerpt: 'Type 2 diabetes often goes undiagnosed for years. Dr. Kakare explains the early warning signs every adult should know and the lifestyle changes that can delay or prevent progression.',
     accentColor: COLORS.red,
   },
@@ -33,6 +34,7 @@ const BLOG_POSTS = [
     title: 'Thyroid Problems: Why They Are More Common Than You Think',
     date: 'May 28, 2025',
     category: 'Thyroid',
+    href: '#thyroid-care',
     excerpt: 'Fatigue, weight changes, and mood swings could all be thyroid-related. Learn how a simple blood test can reveal what\'s really going on.',
     accentColor: COLORS.teal,
   },
@@ -40,6 +42,7 @@ const BLOG_POSTS = [
     title: 'Managing Hypertension Without Fear: A Practical Guide',
     date: 'April 15, 2025',
     category: 'Internal Medicine',
+    href: '#internal-medicine',
     excerpt: 'High blood pressure is called the "silent killer" for a reason — but with the right approach, it is very manageable. Our guide covers medication, diet, and monitoring.',
     accentColor: COLORS.green,
   },
@@ -47,6 +50,7 @@ const BLOG_POSTS = [
     title: 'When to Go to the ER vs. Schedule a Doctor\'s Appointment',
     date: 'March 3, 2025',
     category: 'Emergency',
+    href: '#emergency-care',
     excerpt: 'Not every symptom needs an emergency room visit, but some do. Dr. Kakare outlines the key differences so you make the right call — fast.',
     accentColor: COLORS.amber,
   },
@@ -66,13 +70,43 @@ const INSURANCE = [
   'Oriental Insurance', 'National Insurance', 'ICICI Lombard', 'Bajaj Allianz',
 ];
 
+const FAQ_ITEMS = [
+  {
+    q: 'Is Sunshine Multi-Speciality Center open 24/7?',
+    a: 'Yes, Sunshine Multi-Speciality Center at Rankala, Kolhapur is open 24 hours a day, 7 days a week, including emergency and ICU services.',
+  },
+  {
+    q: 'What insurance providers does Sunshine accept?',
+    a: 'We accept cashless treatment from Medi-Assist, Star Health, HDFC Ergo, New India Assurance, Oriental Insurance, National Insurance, ICICI Lombard, Bajaj Allianz, and more.',
+  },
+  {
+    q: 'What are the visiting hours?',
+    a: 'General visiting hours are 8:00 AM to 8:00 PM. ICU visits are by prior arrangement only. Maximum 2 visitors per patient at a time.',
+  },
+  {
+    q: 'How can I book an appointment?',
+    a: 'Call or WhatsApp at 7276009466, or fill the appointment form on this website. For emergencies, call directly — we are available 24/7.',
+  },
+  {
+    q: 'Where is the hospital located?',
+    a: 'Sunshine Multi-Speciality Center (hospital) is at Rankala, Kolhapur — opposite Dr. Yedekar Hospital, near Nagojirao Patankar Highschool. Dr. Kakare also consults at his OPD clinic in Laxmipuri, Kolhapur, and in Karad.',
+  },
+  {
+    q: 'Does the hospital have ICU facilities?',
+    a: 'Yes — our ICU has continuous monitoring, ventilator support, and round-the-clock specialist coverage.',
+  },
+];
+
 export default function PatientResourcesSection() {
   const { ref, visible } = useScrollReveal(0.05);
   const { ref: blogRef, visible: blogVisible } = useScrollReveal(0.05);
+  const { ref: faqRef, visible: faqVisible } = useScrollReveal(0.05);
 
   return (
     <Box
       id="resources"
+      component="section"
+      aria-label="Patient Resources, Health Blog and FAQ"
       sx={{
         py: { xs: 8, md: 12 },
         bgcolor: 'background.default',
@@ -305,9 +339,20 @@ export default function PatientResourcesSection() {
                   transition: `all 0.6s cubic-bezier(0.4,0,0.2,1) ${i * 0.1 + 0.1}s`,
                 }}
               >
+                {/* Card links to relevant service section for internal linking */}
                 <Card
+                  component="a"
+                  href={post.href}
+                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                    e.preventDefault();
+                    const el = document.querySelector(post.href);
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  aria-label={`Read about ${post.category} — ${post.title}`}
                   sx={{
                     height: '100%',
+                    display: 'block',
+                    textDecoration: 'none',
                     cursor: 'pointer',
                     border: '1px solid rgba(226,232,240,0.6)',
                     position: 'relative',
@@ -354,7 +399,7 @@ export default function PatientResourcesSection() {
                       variant="h6"
                       fontWeight={700}
                       gutterBottom
-                      sx={{ lineHeight: 1.4, fontSize: '0.95rem', minHeight: 56 }}
+                      sx={{ lineHeight: 1.4, fontSize: '0.95rem', minHeight: 56, color: 'text.primary' }}
                     >
                       {post.title}
                     </Typography>
@@ -380,6 +425,103 @@ export default function PatientResourcesSection() {
               </Grid>
             ))}
           </Grid>
+        </Box>
+
+        {/* ═══ FAQ Section — visible HTML matching FAQPage JSON-LD schema ═══ */}
+        <Box id="faq" sx={{ mt: 10 }}>
+          <Box sx={{ textAlign: 'center', mb: 6 }}>
+            <Chip
+              label="FAQ"
+              sx={{
+                mb: 2,
+                fontWeight: 700,
+                background: `linear-gradient(135deg, rgba(8,145,178,0.08) 0%, rgba(8,145,178,0.03) 100%)`,
+                border: `1px solid rgba(8,145,178,0.25)`,
+                color: COLORS.navy,
+                fontSize: '0.8rem',
+                borderRadius: `${RADIUS.sm}px`,
+              }}
+            />
+            <Typography variant="h4" fontWeight={700}>
+              Frequently Asked{' '}
+              <Box component="span" className="gradient-text-dark">Questions</Box>
+            </Typography>
+          </Box>
+          <Box
+            ref={faqRef as React.Ref<HTMLDivElement>}
+            itemScope
+            itemType="https://schema.org/FAQPage"
+          >
+            <Grid container spacing={2}>
+              {FAQ_ITEMS.map((item, i) => (
+                <Grid
+                  key={item.q}
+                  size={{ xs: 12, md: 6 }}
+                  sx={{
+                    opacity: faqVisible ? 1 : 0,
+                    transform: faqVisible ? 'none' : 'translateY(16px)',
+                    transition: `all 0.5s ease ${i * 0.08}s`,
+                  }}
+                  itemScope
+                  itemProp="mainEntity"
+                  itemType="https://schema.org/Question"
+                >
+                  <Card
+                    sx={{
+                      height: '100%',
+                      border: '1px solid rgba(226,232,240,0.6)',
+                      '&:hover': {
+                        borderColor: 'rgba(8,145,178,0.2)',
+                        boxShadow: SHADOW.lg,
+                      },
+                    }}
+                  >
+                    <CardContent sx={{ p: 3 }}>
+                      <Typography
+                        variant="subtitle1"
+                        fontWeight={700}
+                        gutterBottom
+                        itemProp="name"
+                        sx={{ color: COLORS.navy, display: 'flex', alignItems: 'flex-start', gap: 1 }}
+                      >
+                        <Box
+                          component="span"
+                          sx={{
+                            display: 'inline-flex',
+                            flexShrink: 0,
+                            mt: 0.25,
+                            width: 20,
+                            height: 20,
+                            borderRadius: '50%',
+                            bgcolor: COLORS.tealSubtle,
+                            color: COLORS.teal,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontSize: '0.65rem',
+                            fontWeight: 800,
+                          }}
+                        >
+                          Q
+                        </Box>
+                        {item.q}
+                      </Typography>
+                      <Box itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                        <Typography
+                          variant="body2"
+                          color="text.secondary"
+                          lineHeight={1.8}
+                          itemProp="text"
+                          sx={{ pl: 3.5 }}
+                        >
+                          {item.a}
+                        </Typography>
+                      </Box>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
         </Box>
       </Container>
     </Box>

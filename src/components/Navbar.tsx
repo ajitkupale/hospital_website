@@ -22,6 +22,7 @@ import { COLORS, RADIUS, TRANSITION_MEDIUM } from '../theme';
 const NAV_LINKS = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
+  { label: 'Dr. Kakare', href: '#dr-onkar-kakare' },
   { label: 'Services', href: '#services' },
   { label: 'Patient Resources', href: '#resources' },
   { label: 'Contact', href: '#contact' },
@@ -61,6 +62,7 @@ export default function Navbar() {
     <>
       <AppBar
         component="nav"
+        aria-label="Main navigation"
         position="fixed"
         elevation={0}
         sx={{
@@ -179,7 +181,7 @@ export default function Navbar() {
             icon={<PhoneIcon sx={{ fontSize: 14, color: 'white' }} />}
             label="24/7 Emergency"
             component="a"
-            href="tel:+91XXXXXXXXXX"
+            href="tel:+917276009466"
             clickable
             sx={{
               display: { xs: 'none', sm: 'flex' },
@@ -305,7 +307,7 @@ export default function Navbar() {
               color="error"
               startIcon={<PhoneIcon />}
               component="a"
-              href="tel:+91XXXXXXXXXX"
+              href="tel:+917276009466"
               sx={{
                 py: 2,
                 fontWeight: 700,

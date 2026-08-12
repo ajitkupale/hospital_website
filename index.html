@@ -3,24 +3,493 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230891B2'%3E%3Cpath d='M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z'/%3E%3C/svg%3E" />
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
-    <meta name="description" content="Sunshine Multi-Speciality Center — 24/7 hospital and clinic in Kolhapur led by Dr. Onkar Kakare. Expert care in Internal Medicine, Diabetology, Thyroid, ICU & Emergency." />
-    <meta name="theme-color" content="#0B3D5C" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SEO: Primary Meta Tags
+    ═══════════════════════════════════════════════════════════ -->
+    <!-- Title: 57 chars — targets "hospital in Kolhapur" + "multi-speciality hospital Rankala" -->
+    <title>Sunshine Multi-Speciality Center | Hospital in Kolhapur</title>
+    <meta name="description" content="Sunshine Multi-Speciality Center, Rankala, Kolhapur — 24/7 hospital led by Dr. Onkar Kakare. Expert diabetes, thyroid, ICU &amp; emergency care. Call 7276009466." />
+    <meta name="keywords" content="hospital Kolhapur, multi-speciality hospital Rankala, Dr. Onkar Kakare, diabetologist Kolhapur, internal medicine specialist Kolhapur, thyroid care Kolhapur, ICU Kolhapur, emergency hospital Kolhapur, hospital near me Kolhapur, Sunshine Multi-Speciality Center, Laxmipuri clinic Kolhapur, blood pressure treatment Kolhapur, gastric disorder Kolhapur" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="author" content="Sunshine Multi-Speciality Center, Kolhapur" />
-    <meta property="og:title" content="Sunshine Multi-Speciality Center — Kolhapur" />
-    <meta property="og:description" content="24/7 expert healthcare by Dr. Onkar Kakare — Internal Medicine, Diabetology, ICU & Emergency services." />
+    <meta name="theme-color" content="#0B3D5C" />
+    <link rel="canonical" href="https://sunshine-beige-five.vercel.app/" />
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SEO: Geo Meta Tags (Local SEO)
+    ═══════════════════════════════════════════════════════════ -->
+    <meta name="geo.region" content="IN-MH" />
+    <meta name="geo.placename" content="Rankala, Kolhapur, Maharashtra" />
+    <meta name="geo.position" content="16.7036;74.2180" />
+    <meta name="ICBM" content="16.7036, 74.2180" />
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SEO: Open Graph (Facebook / LinkedIn)
+    ═══════════════════════════════════════════════════════════ -->
+    <meta property="og:title" content="Sunshine Multi-Speciality Center | 24/7 Hospital in Kolhapur" />
+    <meta property="og:description" content="24/7 multi-speciality hospital in Rankala, Kolhapur. Dr. Onkar Kakare — Internal Medicine, Diabetology, ICU &amp; Emergency. Book now: 7276009466." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sunshine-beige-five.vercel.app/" />
+    <meta property="og:image" content="https://sunshine-beige-five.vercel.app/hospital-hero.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Sunshine Multi-Speciality Center — 24/7 Hospital in Rankala, Kolhapur" />
+    <meta property="og:site_name" content="Sunshine Multi-Speciality Center" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SEO: Twitter Card
+    ═══════════════════════════════════════════════════════════ -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Sunshine Multi-Speciality Center — Kolhapur" />
-    <meta name="twitter:description" content="24/7 expert healthcare by Dr. Onkar Kakare — Internal Medicine, Diabetology, ICU & Emergency." />
-    <meta name="keywords" content="hospital Kolhapur, Dr. Onkar Kakare, internal medicine, diabetologist, thyroid care, ICU, emergency hospital, Rankala, Laxmipuri, multi-speciality center" />
-    <meta name="robots" content="index, follow" />
-    <!-- Preconnect to Google Fonts CDN for faster loading -->
+    <meta name="twitter:title" content="Sunshine Multi-Speciality Center | 24/7 Hospital Kolhapur" />
+    <meta name="twitter:description" content="24/7 expert healthcare by Dr. Onkar Kakare — Internal Medicine, Diabetology, ICU &amp; Emergency. Call 7276009466." />
+    <meta name="twitter:image" content="https://sunshine-beige-five.vercel.app/hospital-hero.webp" />
+    <meta name="twitter:image:alt" content="Sunshine Multi-Speciality Center — 24/7 Hospital in Rankala, Kolhapur" />
+
+    <!-- ═══════════════════════════════════════════════════════════
+         Performance: Preconnect + Preload LCP resources
+    ═══════════════════════════════════════════════════════════ -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <title>Sunshine Multi-Speciality Center — 24/7 Hospital &amp; Clinic | Kolhapur</title>
+    <!-- Preload hero image (LCP element) -->
+    <link rel="preload" as="image" href="/hospital-hero.webp" fetchpriority="high" />
+    <!-- Preload doctor image (above-the-fold on About section) -->
+    <link rel="preload" as="image" href="/doctor-kakare.webp" />
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SEO: JSON-LD — Hospital (Rankala — main hospital, open 24/7)
+    ═══════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Hospital",
+      "@id": "https://sunshine-beige-five.vercel.app/#hospital",
+      "name": "Sunshine Multi-Speciality Center",
+      "alternateName": "Sunshine Hospital Kolhapur",
+      "description": "24/7 multi-speciality hospital in Rankala, Kolhapur offering ICU, emergency care, diabetes management, thyroid care, blood pressure treatment, and inpatient facilities.",
+      "url": "https://sunshine-beige-five.vercel.app/",
+      "telephone": "+917276009466",
+      "image": [
+        "https://sunshine-beige-five.vercel.app/hospital-hero.webp"
+      ],
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sunshine-beige-five.vercel.app/hospital-hero.webp",
+        "width": "1200",
+        "height": "800"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Opposite Dr. Yedekar Hospital, near Nagojirao Patankar Highschool, Rankala",
+        "addressLocality": "Kolhapur",
+        "addressRegion": "Maharashtra",
+        "postalCode": "416012",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 16.7036,
+        "longitude": 74.2180
+      },
+      "hasMap": "https://maps.google.com/?q=Rankala,Kolhapur,Maharashtra",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "isAcceptingNewPatients": true,
+      "emergencyService": true,
+      "medicalSpecialty": ["InternalMedicine", "Endocrine", "CriticalCare"],
+      "priceRange": "₹",
+      "currenciesAccepted": "INR",
+      "paymentAccepted": "Cash, Insurance, Cashless",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+917276009466",
+          "contactType": "customer service",
+          "areaServed": "IN",
+          "availableLanguage": ["English", "Hindi", "Marathi"],
+          "contactOption": "TollFree",
+          "hoursAvailable": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "00:00",
+            "closes": "23:59"
+          }
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": "+917276009466",
+          "contactType": "emergency",
+          "areaServed": "IN",
+          "availableLanguage": ["English", "Hindi", "Marathi"]
+        }
+      ],
+      "sameAs": [
+        "https://maps.google.com/?q=Sunshine+Multi+Speciality+Center+Rankala+Kolhapur"
+      ],
+      "availableService": [
+        {"@type": "MedicalProcedure", "name": "Diabetes Management"},
+        {"@type": "MedicalProcedure", "name": "Blood Pressure Management"},
+        {"@type": "MedicalProcedure", "name": "Pain Management"},
+        {"@type": "MedicalProcedure", "name": "Thyroid Care"},
+        {"@type": "MedicalProcedure", "name": "Gastric Disorder Treatment"},
+        {"@type": "MedicalProcedure", "name": "Respiratory Care"},
+        {"@type": "MedicalProcedure", "name": "ICU Care"},
+        {"@type": "MedicalProcedure", "name": "Emergency Care"},
+        {"@type": "MedicalProcedure", "name": "Inpatient Facilities"}
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "200"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "Savita Patil"},
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "reviewBody": "Dr. Kakare identified my mother's thyroid condition when two other doctors had missed it. His patience in explaining everything meant the world to us. The hospital is spotlessly clean and the staff is always helpful."
+        },
+        {
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "Ramesh Shinde"},
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "reviewBody": "I have been managing my diabetes under Dr. Kakare for 4 years now. My HbA1c has never been better. He always has time for my questions, never makes me feel rushed. Truly a doctor who cares."
+        },
+        {
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "Priya Deshmukh"},
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "reviewBody": "We brought my elderly father in at 2 AM with chest pain. The emergency team was ready within minutes. Dr. Kakare himself came in and stayed until my father was stable."
+        },
+        {
+          "@type": "Review",
+          "author": {"@type": "Person", "name": "Sunil Jadhav"},
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "reviewBody": "I was impressed by how Dr. Kakare listened and how accurate his diagnosis was. No unnecessary tests, no over-prescription. Honest medicine."
+        }
+      ]
+    }
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SEO: JSON-LD — MedicalClinic (Laxmipuri — OPD clinic ONLY, NOT a hospital)
+    ═══════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalClinic",
+      "@id": "https://sunshine-beige-five.vercel.app/#clinic-laxmipuri",
+      "name": "Dr. Onkar Kakare Clinic",
+      "description": "OPD consultation clinic of Dr. Onkar Kakare in Laxmipuri, Kolhapur. Internal Medicine and Diabetology consultations available on appointment.",
+      "telephone": "+917276009466",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Laxmipuri",
+        "addressLocality": "Kolhapur",
+        "addressRegion": "Maharashtra",
+        "postalCode": "416002",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 16.7136,
+        "longitude": 74.2180
+      },
+      "hasMap": "https://maps.google.com/?q=Laxmipuri,Kolhapur,Maharashtra",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+          "opens": "09:00",
+          "closes": "14:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+          "opens": "17:00",
+          "closes": "21:00"
+        }
+      ],
+      "medicalSpecialty": ["InternalMedicine", "Endocrine"],
+      "availableService": [
+        {"@type": "MedicalProcedure", "name": "Diabetes Management Consultation"},
+        {"@type": "MedicalProcedure", "name": "Internal Medicine Consultation"},
+        {"@type": "MedicalProcedure", "name": "Thyroid Consultation"},
+        {"@type": "MedicalProcedure", "name": "General Health Check-up"}
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+917276009466",
+        "contactType": "customer service",
+        "areaServed": "IN",
+        "availableLanguage": ["English", "Hindi", "Marathi"]
+      }
+    }
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SEO: JSON-LD — Physician (Dr. Onkar Kakare)
+    ═══════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Physician",
+      "@id": "https://sunshine-beige-five.vercel.app/#dr-kakare",
+      "name": "Dr. Onkar Kakare",
+      "jobTitle": "Internal Medicine Specialist & Diabetologist",
+      "description": "Internal Medicine Specialist, General Practitioner, and Diabetologist with 15+ years of clinical experience in Kolhapur, Maharashtra.",
+      "image": "https://sunshine-beige-five.vercel.app/doctor-kakare.webp",
+      "telephone": "+917276009466",
+      "medicalSpecialty": ["InternalMedicine", "Endocrine"],
+      "qualifications": "MBBS, MD (Internal Medicine)",
+      "knowsAbout": [
+        "Diabetes Management",
+        "Thyroid Disorders",
+        "Hypertension",
+        "Internal Medicine",
+        "Gastric Disorders",
+        "Respiratory Problems",
+        "Pain Management"
+      ],
+      "worksAt": [
+        {
+          "@type": "Hospital",
+          "@id": "https://sunshine-beige-five.vercel.app/#hospital",
+          "name": "Sunshine Multi-Speciality Center",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Opposite Dr. Yedekar Hospital, near Nagojirao Patankar Highschool, Rankala",
+            "addressLocality": "Kolhapur",
+            "addressRegion": "Maharashtra",
+            "addressCountry": "IN"
+          }
+        },
+        {
+          "@type": "MedicalClinic",
+          "@id": "https://sunshine-beige-five.vercel.app/#clinic-laxmipuri",
+          "name": "Dr. Onkar Kakare Clinic",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Laxmipuri",
+            "addressLocality": "Kolhapur",
+            "addressRegion": "Maharashtra",
+            "addressCountry": "IN"
+          }
+        }
+      ],
+      "availableService": [
+        {"@type": "MedicalProcedure", "name": "Diabetes Management"},
+        {"@type": "MedicalProcedure", "name": "Thyroid Care"},
+        {"@type": "MedicalProcedure", "name": "Pain Management"},
+        {"@type": "MedicalProcedure", "name": "Blood Pressure Management"},
+        {"@type": "MedicalProcedure", "name": "Internal Medicine Consultation"},
+        {"@type": "MedicalProcedure", "name": "General Health Check-up"}
+      ]
+    }
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SEO: JSON-LD — FAQPage
+    ═══════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Sunshine Multi-Speciality Center open 24/7?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Sunshine Multi-Speciality Center at Rankala, Kolhapur is open 24 hours a day, 7 days a week, including emergency and ICU services."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What insurance providers does Sunshine Multi-Speciality Center accept?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We accept cashless treatment from Medi-Assist, Star Health Insurance, HDFC Ergo, New India Assurance, Oriental Insurance, National Insurance, ICICI Lombard, Bajaj Allianz, and more. Bring your insurance card and photo ID for cashless pre-authorization."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the visiting hours at Sunshine Multi-Speciality Center?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "General visiting hours are 8:00 AM to 8:00 PM. ICU visits are by prior arrangement. Maximum 2 visitors per patient at a time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is Sunshine Multi-Speciality Center located?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our main hospital is at Rankala, Kolhapur — opposite Dr. Yedekar Hospital, near Nagojirao Patankar Highschool. Dr. Kakare also has an OPD consultation clinic at Laxmipuri, Kolhapur."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What services does Dr. Onkar Kakare specialize in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dr. Onkar Kakare is an Internal Medicine Specialist, General Practitioner, and Diabetologist. He specializes in diabetes management, thyroid care, blood pressure management, pain management, gastric disorders, and respiratory problems."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I book an appointment at Sunshine Multi-Speciality Center?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can book an appointment by calling or WhatsApp at 7276009466, or by filling out the appointment form on our website. For emergencies, call directly — we are available 24/7."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Sunshine Multi-Speciality Center have ICU facilities?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Sunshine Multi-Speciality Center has a state-of-the-art Intensive Care Unit (ICU) with continuous monitoring, ventilator support, and round-the-clock specialist coverage."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is Dr. Onkar Kakare's clinic in Laxmipuri?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dr. Kakare's personal OPD consultation clinic is located in Laxmipuri, Kolhapur. It is open Monday to Saturday, morning and evening sessions. Please call 7276009466 to confirm timings. Note: this is a clinic only — not a hospital."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Dr. Kakare consult in Karad as well?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Dr. Onkar Kakare also consults in Karad. Please call 7276009466 to know the schedule for Karad consultations."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SEO: JSON-LD — WebSite + SiteLinksSearchBox
+    ═══════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Sunshine Multi-Speciality Center",
+      "url": "https://sunshine-beige-five.vercel.app/",
+      "description": "Official website of Sunshine Multi-Speciality Center, a 24/7 hospital in Rankala, Kolhapur led by Dr. Onkar Kakare.",
+      "inLanguage": "en-IN",
+      "publisher": {
+        "@type": "Hospital",
+        "@id": "https://sunshine-beige-five.vercel.app/#hospital"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://sunshine-beige-five.vercel.app/#contact?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SEO: JSON-LD — BreadcrumbList (for SPA sections)
+    ═══════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sunshine-beige-five.vercel.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "About Us",
+          "item": "https://sunshine-beige-five.vercel.app/#about"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Dr. Onkar Kakare",
+          "item": "https://sunshine-beige-five.vercel.app/#dr-onkar-kakare"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Services",
+          "item": "https://sunshine-beige-five.vercel.app/#services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Patient Resources",
+          "item": "https://sunshine-beige-five.vercel.app/#resources"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "Book Appointment",
+          "item": "https://sunshine-beige-five.vercel.app/#contact"
+        }
+      ]
+    }
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SEO: JSON-LD — MedicalWebPage for key services
+    ═══════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalWebPage",
+      "name": "Diabetes Management in Kolhapur — Sunshine Multi-Speciality Center",
+      "url": "https://sunshine-beige-five.vercel.app/#diabetes-management",
+      "description": "Expert diabetes management by Dr. Onkar Kakare at Sunshine Multi-Speciality Center, Kolhapur. HbA1c monitoring, medication review, diet counseling, and complication screening.",
+      "about": {
+        "@type": "MedicalCondition",
+        "name": "Diabetes Mellitus",
+        "alternateName": "Diabetes"
+      },
+      "audience": {
+        "@type": "MedicalAudience",
+        "audienceType": "Patient"
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Sunshine Multi-Speciality Center",
+        "url": "https://sunshine-beige-five.vercel.app/"
+      },
+      "reviewedBy": {
+        "@type": "Physician",
+        "@id": "https://sunshine-beige-five.vercel.app/#dr-kakare"
+      }
+    }
+    </script>
+
   </head>
   <body>
+    <!-- Skip-to-content link for screen readers and keyboard nav -->
+    <a href="#home" class="skip-link">Skip to main content</a>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

@@ -21,18 +21,19 @@ import { COLORS, RADIUS, SHADOW, TRANSITION_MEDIUM } from '../theme';
 const QUICK_LINKS = [
   { label: 'Home', href: '#home' },
   { label: 'About Us', href: '#about' },
+  { label: 'Dr. Onkar Kakare', href: '#dr-onkar-kakare' },
   { label: 'Services', href: '#services' },
   { label: 'Patient Resources', href: '#resources' },
   { label: 'Book Appointment', href: '#contact' },
 ];
 
 const SERVICES_LINKS = [
-  'Internal Medicine',
-  'Diabetes Management',
-  'Thyroid Care',
-  'ICU & Emergency',
-  'Pain Management',
-  'General Health Check-ups',
+  { label: 'Internal Medicine', href: '#internal-medicine' },
+  { label: 'Diabetes Management', href: '#diabetes-management' },
+  { label: 'Thyroid Care', href: '#thyroid-care' },
+  { label: 'ICU & Emergency', href: '#icu' },
+  { label: 'Pain Management', href: '#pain-management' },
+  { label: 'General Health Check-ups', href: '#general-health-checkups' },
 ];
 
 const SOCIALS = [
@@ -229,24 +230,32 @@ export default function Footer() {
               </Typography>
               <Stack spacing={1}>
                 {SERVICES_LINKS.map((s) => (
-                  <Typography
-                    key={s}
-                    variant="body2"
+                  <Button
+                    key={s.label}
+                    onClick={() => scrollTo(s.href)}
                     sx={{
                       color: 'rgba(255,255,255,0.45)',
+                      justifyContent: 'flex-start',
+                      p: 0,
+                      minWidth: 0,
+                      fontWeight: 400,
                       fontSize: '0.875rem',
-                      transition: 'color 0.3s ease',
-                      cursor: 'default',
-                      '&:hover': { color: 'rgba(255,255,255,0.7)' },
+                      letterSpacing: '0.01em',
+                      transition: TRANSITION_MEDIUM,
+                      '&:hover': {
+                        color: COLORS.tealLight,
+                        bgcolor: 'transparent',
+                        transform: 'translateX(4px)',
+                      },
                     }}
                   >
-                    {s}
-                  </Typography>
+                    {s.label}
+                  </Button>
                 ))}
               </Stack>
             </Grid>
 
-            {/* Contact */}
+            {/* Contact — wrapped in <address> for NAP semantic markup */}
             <Grid size={{ xs: 12, md: 4 }}>
               <Typography
                 variant="subtitle2"
@@ -260,73 +269,101 @@ export default function Footer() {
               >
                 CONTACT US
               </Typography>
-              <Stack spacing={3}>
-                <Stack direction="row" spacing={2} alignItems="flex-start">
-                  <Box
-                    sx={{
-                      p: 0.75,
-                      borderRadius: `${RADIUS.sm}px`,
-                      bgcolor: 'rgba(8,145,178,0.08)',
-                      display: 'flex',
-                      mt: 0.25,
-                    }}
-                  >
-                    <LocationOnIcon sx={{ color: COLORS.teal, fontSize: 18 }} />
-                  </Box>
-                  <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.45)', lineHeight: 1.75 }}>
-                    Opposite Dr. Yedekar Hospital, near Nagojirao Patankar Highschool, Rankala, Kolhapur
-                  </Typography>
-                </Stack>
-                <Stack direction="row" spacing={2} alignItems="center">
-                  <Box
-                    sx={{
-                      p: 0.75,
-                      borderRadius: `${RADIUS.sm}px`,
-                      bgcolor: 'rgba(8,145,178,0.08)',
-                      display: 'flex',
-                    }}
-                  >
-                    <PhoneIcon sx={{ color: COLORS.teal, fontSize: 18 }} />
-                  </Box>
-                  <Typography
-                    variant="body2"
+              <Box component="address" sx={{ fontStyle: 'normal' }}>
+                <Stack spacing={3}>
+                  {/* Hospital address — Rankala */}
+                  <Stack direction="row" spacing={2} alignItems="flex-start">
+                    <Box
+                      sx={{
+                        p: 0.75,
+                        borderRadius: `${RADIUS.sm}px`,
+                        bgcolor: 'rgba(8,145,178,0.08)',
+                        display: 'flex',
+                        mt: 0.25,
+                      }}
+                    >
+                      <LocationOnIcon sx={{ color: COLORS.teal, fontSize: 18 }} />
+                    </Box>
+                    <Box>
+                      <Typography variant="caption" sx={{ color: COLORS.tealLight, fontWeight: 700, display: 'block', mb: 0.5, fontSize: '0.65rem', letterSpacing: '0.08em' }}>HOSPITAL</Typography>
+                      <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.45)', lineHeight: 1.75 }}>
+                        Opposite Dr. Yedekar Hospital, near Nagojirao Patankar Highschool,{' '}
+                        Rankala, Kolhapur, Maharashtra — 416012
+                      </Typography>
+                    </Box>
+                  </Stack>
+                  {/* Clinic address — Laxmipuri (OPD only, NOT a hospital) */}
+                  <Stack direction="row" spacing={2} alignItems="flex-start">
+                    <Box
+                      sx={{
+                        p: 0.75,
+                        borderRadius: `${RADIUS.sm}px`,
+                        bgcolor: 'rgba(8,145,178,0.08)',
+                        display: 'flex',
+                        mt: 0.25,
+                      }}
+                    >
+                      <LocationOnIcon sx={{ color: COLORS.teal, fontSize: 18 }} />
+                    </Box>
+                    <Box>
+                      <Typography variant="caption" sx={{ color: COLORS.tealLight, fontWeight: 700, display: 'block', mb: 0.5, fontSize: '0.65rem', letterSpacing: '0.08em' }}>OPD CLINIC</Typography>
+                      <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.45)', lineHeight: 1.75 }}>
+                        Dr. Onkar Kakare Clinic, Laxmipuri, Kolhapur, Maharashtra
+                      </Typography>
+                    </Box>
+                  </Stack>
+                  {/* Phone — same number for both locations */}
+                  <Stack direction="row" spacing={2} alignItems="center">
+                    <Box
+                      sx={{
+                        p: 0.75,
+                        borderRadius: `${RADIUS.sm}px`,
+                        bgcolor: 'rgba(8,145,178,0.08)',
+                        display: 'flex',
+                      }}
+                    >
+                      <PhoneIcon sx={{ color: COLORS.teal, fontSize: 18 }} />
+                    </Box>
+                    <Typography
+                      variant="body2"
+                      component="a"
+                      href="tel:+917276009466"
+                      sx={{
+                        color: 'rgba(255,255,255,0.45)',
+                        textDecoration: 'none',
+                        transition: 'color 0.3s ease',
+                        '&:hover': { color: COLORS.tealLight },
+                      }}
+                    >
+                      +91 72760 09466 (24/7)
+                    </Typography>
+                  </Stack>
+                  <Button
+                    variant="outlined"
+                    startIcon={<PhoneIcon />}
                     component="a"
-                    href="tel:+91XXXXXXXXXX"
+                    href="tel:+917276009466"
                     sx={{
-                      color: 'rgba(255,255,255,0.45)',
-                      textDecoration: 'none',
-                      transition: 'color 0.3s ease',
-                      '&:hover': { color: COLORS.tealLight },
+                      borderColor: 'rgba(8,145,178,0.25)',
+                      color: COLORS.tealLight,
+                      alignSelf: 'flex-start',
+                      borderRadius: `${RADIUS.md}px`,
+                      borderWidth: 2,
+                      fontWeight: 600,
+                      transition: TRANSITION_MEDIUM,
+                      '&:hover': {
+                        bgcolor: 'rgba(8,145,178,0.06)',
+                        borderColor: COLORS.teal,
+                        borderWidth: 2,
+                        transform: 'translateY(-2px)',
+                        boxShadow: SHADOW.glow,
+                      },
                     }}
                   >
-                    +91 XXXXX XXXXX (24/7)
-                  </Typography>
+                    Call for Emergency
+                  </Button>
                 </Stack>
-                <Button
-                  variant="outlined"
-                  startIcon={<PhoneIcon />}
-                  component="a"
-                  href="tel:+91XXXXXXXXXX"
-                  sx={{
-                    borderColor: 'rgba(8,145,178,0.25)',
-                    color: COLORS.tealLight,
-                    alignSelf: 'flex-start',
-                    borderRadius: `${RADIUS.md}px`,
-                    borderWidth: 2,
-                    fontWeight: 600,
-                    transition: TRANSITION_MEDIUM,
-                    '&:hover': {
-                      bgcolor: 'rgba(8,145,178,0.06)',
-                      borderColor: COLORS.teal,
-                      borderWidth: 2,
-                      transform: 'translateY(-2px)',
-                      boxShadow: SHADOW.glow,
-                    },
-                  }}
-                >
-                  Call for Emergency
-                </Button>
-              </Stack>
+              </Box>
             </Grid>
           </Grid>
 
